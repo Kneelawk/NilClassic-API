@@ -2,6 +2,9 @@
 
 name: release
 
+env:
+  PROJECT_NAME: NilClassic-API
+
 on:
   push:
     tags:
