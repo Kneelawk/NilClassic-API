@@ -1,5 +1,6 @@
 plugins {
     id 'com.unascribed.nilgradle' version '1.4.3'
+    id 'maven-publish'
 }
 
 // You can change this to be higher if you like. NilLoader itself is compiled
@@ -7,9 +8,20 @@ plugins {
 sourceCompatibility = 8
 targetCompatibility = 8
 
+// Detect mod version during publish script
+String modVersion
+if (System.getenv("RELEASE_TAG") != null) {
+    String releaseTag = System.getenv("RELEASE_TAG")
+    modVersion = releaseTag.substring(1)
+    println("Detected Release Version: $modVersion")
+} else {
+    modVersion = '0.1.0+dev'
+    println("Detected Local Version: $modVersion")
+}
+
 group = 'com.kneelawk'
 archivesBaseName = 'NilClassic-API'
-version = '1.0'
+version = modVersion
 
 repositories {
     maven {
@@ -59,4 +71,21 @@ dependencies {
 
 mappings {
     work 'mappings:obfToNamed:c0.30_01c-36'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        String mavenUrl = System.getenv("MAVEN_URL")
+        if (mavenUrl != null) {
+            maven {
+                name = "maven"
+                url = uri(mavenUrl)
+            }
+        }
+    }
 }
