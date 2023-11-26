@@ -9,3 +9,6 @@ pluginManagement {
 		}
 	}
 }
+
+rootProject.name = 'nilclassic-api'
+
