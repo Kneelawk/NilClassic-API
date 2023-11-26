@@ -13,6 +13,7 @@ jobs:
     steps:
       - name: Get Tag Version
         uses: dawidd6/action-get-tag@v1
+        id: tag_version
       - name: Checkout
         uses: actions/checkout@v4
       - name: Validate Gradle Wrapper
