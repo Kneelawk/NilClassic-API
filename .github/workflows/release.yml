@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get Tag Version
-        uses: dawidd6/action-get-tag@v1
+        run: git tag --points-at HEAD >> $GITHUB_OUTPUT
         id: tag_version
       - name: Checkout
         uses: actions/checkout@v4
