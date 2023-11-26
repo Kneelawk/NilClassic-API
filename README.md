@@ -1,6 +1,6 @@
-# NilClassic
+# NilClassic-API
 
-A simple template mod for modding classic using NilLoader.
+A simple API for modding classic using NilLoader.
 
 ## A quick note
 
@@ -14,15 +14,30 @@ not yet guaranteed***.
 
 If you're okay with that, then cool. Let's continue.
 
-## Steps to use the template
+## The API
 
-1. You must pick a unique nilmod ID and put it in build.gradle. You will then
-   have to rename src/main/resources/nilclassic.nilmod.css to use your ID.
-2. You need to rename the package from com.kneelawk.nilclassic to a package
-   you have permission to use; see [this wizard](https://unascribed.com/old/javapkg.html)
-   for help if you don't know what a good package name is.
-3. You will probably want to replace LICENSE with something else, unless CC0
-   Public Domain Dedication is what you want.
+### Entrypoints
+
+NilClassic-API provides entrypoints:
+
+* `client-init` - Earliest point when it is safe to access Minecraft code. This can be used for registering event
+  listeners.
+
+## Depending on NilClassic-API
+
+NilClassic can be used by depending on it in your gradle script:
+```groovy
+repositories {
+    maven {
+        name = 'Kneelawk'
+        url = 'https://kneelawk.com/maven/'
+    }
+}
+
+dependencies {
+    implementation "com.kneelawk:nilclassic-api:${nilclassicApiVersion}"
+}
+```
 
 ## Building
 
