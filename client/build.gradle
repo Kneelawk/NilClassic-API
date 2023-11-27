@@ -1,0 +1,92 @@
+plugins {
+    id 'com.unascribed.nilgradle'
+    id 'maven-publish'
+}
+
+// You can change this to be higher if you like. NilLoader itself is compiled
+// for Java 8 for compatibility with older versions.
+sourceCompatibility = 8
+targetCompatibility = 8
+
+// Detect mod version during publish script
+String modVersion
+if (System.getenv("RELEASE_TAG") != null) {
+    String releaseTag = System.getenv("RELEASE_TAG")
+    modVersion = releaseTag.substring(1)
+    println("Detected Release Version: $modVersion")
+} else {
+    modVersion = '0.1.0+dev'
+    println("Detected Local Version: $modVersion")
+}
+
+group = 'com.kneelawk.nilclassic-api'
+archivesBaseName = 'NilClassic-API-Client'
+version = modVersion
+
+repositories {
+    maven {
+        // NilLoader and NilGradle are published here
+        url 'https://repo.sleeping.town'
+        content {
+            includeGroup 'com.unascribed'
+        }
+    }
+    maven {
+        // If you wish to use Yarn or Intermediary
+        url 'https://maven.fabricmc.net'
+        content {
+            includeGroup 'net.fabricmc'
+        }
+    }
+    maven {
+        // If you wish to use mcp_config or compile against Minecraft Forge
+        url 'https://maven.minecraftforge.net'
+        content {
+            includeGroup 'net.minecraftforge'
+            includeGroup 'de.oceanlabs.mcp'
+        }
+    }
+    exclusiveContent {
+        forRepository {
+            flatDir {
+                dir rootProject.file('mappings')
+
+            }
+        }
+        filter {
+            includeGroup 'mappings'
+        }
+    }
+}
+
+nil {
+    id "nilclassic-api"
+    standalone false
+}
+
+dependencies {
+    loader 'com.unascribed:nilloader:1.3.3'
+
+    game nil.minecraft('c0.30_01c', 'client')
+}
+
+mappings {
+    work 'mappings:obfToNamed:c0.30_01c-36'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        String mavenUrl = System.getenv("MAVEN_URL")
+        if (mavenUrl != null) {
+            maven {
+                name = "maven"
+                url = uri(mavenUrl)
+            }
+        }
+    }
+}

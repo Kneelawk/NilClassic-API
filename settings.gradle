@@ -1,14 +1,19 @@
 pluginManagement {
-	repositories {
-		mavenCentral()
-		maven {
-			url 'https://repo.sleeping.town'
-			content {
-				includeGroup 'com.unascribed.nilgradle'
-			}
-		}
-	}
+    repositories {
+        mavenCentral()
+        maven {
+            url 'https://repo.sleeping.town'
+            content {
+                includeGroup 'com.unascribed.nilgradle'
+            }
+        }
+    }
+    plugins {
+        id 'com.unascribed.nilgradle' version '1.4.3'
+    }
 }
 
 rootProject.name = 'nilclassic-api'
 
+include('client')
+include('server')

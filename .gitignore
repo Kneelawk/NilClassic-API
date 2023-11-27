@@ -1,7 +1,10 @@
 /.idea
 /.gradle
+/*/.gradle/
 /build
+/*/build/
 /bin
+/*/bin/
 /.classpath
 /.project
 /.settings
