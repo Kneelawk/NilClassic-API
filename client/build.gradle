@@ -71,7 +71,7 @@ dependencies {
 }
 
 mappings {
-    work 'mappings:obfToNamed:c0.30_01c-36'
+    work 'mappings:obfToNamed-client:c0.30_01c-36'
 }
 
 publishing {
