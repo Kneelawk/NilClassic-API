@@ -35,7 +35,7 @@ jobs:
         if: ${{ runner.os != 'Windows' }}
         run: chmod +x ./gradlew
       - name: Gradle Clean
-        run: ./gradlew clean
+        run: ./gradlew --stacktrace --info clean
       - name: Gradle Check
         run: ./gradlew check
       - name: Gradle Build
