@@ -134,7 +134,7 @@ publishing {
         if (mavenUrl != null) {
             maven {
                 name = "maven"
-                url = uri(mavenUrl)
+                url = uri(rootProject.file(mavenUrl))
             }
         }
     }
