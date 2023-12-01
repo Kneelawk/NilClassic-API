@@ -35,7 +35,14 @@ repositories {
 }
 
 dependencies {
-    implementation "com.kneelawk:nilclassic-api:${nilclassicApiVersion}"
+    // if you are working on a client-side mod:
+    implementation "com.kneelawk.nilclassic-api:client:${nilclassicApiVersion}"
+
+    // if you are working on a server-side mod:
+    implementation "com.kneelawk.nilclassic-api:server:${nilclassicApiVersion}"
+
+    // if you are working on common code shared between client-side and server-side:
+    implementation "com.kneelawk.nilclassic-api:common:${nilclassicApiVersion}"
 }
 ```
 
