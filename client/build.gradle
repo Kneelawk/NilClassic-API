@@ -24,6 +24,8 @@ group = 'com.kneelawk.nilclassic-api'
 archivesBaseName = 'NilClassic-API-Client'
 version = modVersion
 
+project.libsDirectory.set(rootProject.layout.buildDirectory.dir("libs"))
+
 repositories {
     maven {
         // NilLoader and NilGradle are published here
