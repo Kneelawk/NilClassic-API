@@ -15,5 +15,4 @@ pluginManagement {
 
 rootProject.name = 'nilclassic-api'
 
-include('client')
-include('server')
+include('common', 'client', 'server')

@@ -1,4 +1,4 @@
-package com.kneelawk.nilclassicapi.impl.premain;
+package com.kneelawk.nilclassicapi.impl.client.premain;
 
 import nilloader.api.lib.mini.MiniTransformer;
 import nilloader.api.lib.mini.PatchContext;

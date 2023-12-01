@@ -21,7 +21,7 @@ if (System.getenv("RELEASE_TAG") != null) {
 }
 
 group = 'com.kneelawk.nilclassic-api'
-archivesBaseName = 'NilClassic-API-Server'
+archivesBaseName = 'NilClassic-API-Common'
 version = modVersion
 
 repositories {
@@ -78,8 +78,6 @@ dependencies {
     loader 'com.unascribed:nilloader:1.3.3'
 
     game classicServer('c1.10.1')
-
-    compileOnly project(':common')
 }
 
 Dependency classicServer(String version) {
@@ -104,22 +102,6 @@ mappings {
 java.withSourcesJar()
 java.withJavadocJar()
 javadoc.exclude("com/kneelawk/nilclassicapi/impl")
-
-evaluationDependsOn(':common')
-
-tasks.named("compileJava") {
-    source(project(":common").sourceSets.main.allSource)
-}
-tasks.withType(Javadoc).configureEach {
-    source(project(":common").sourceSets.main.allJava)
-}
-tasks.named("sourcesJar", Jar) {
-    from(project(":common").sourceSets.main.allSource)
-}
-
-processResources {
-    from project(":common").sourceSets.main.resources
-}
 
 publishing {
     publications {

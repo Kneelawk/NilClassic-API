@@ -1,4 +1,4 @@
-package com.kneelawk.nilclassicapi.impl.premain;
+package com.kneelawk.nilclassicapi.impl;
 
 import nilloader.api.NilLogger;
 
