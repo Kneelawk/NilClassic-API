@@ -22,10 +22,13 @@ NilClassic-API provides entrypoints:
 
 * `client-init` - Earliest point when it is safe to access Minecraft code. This can be used for registering event
   listeners.
+* `server-init` - Earliest point when it is safe to access Minecraft server code. This can be used for registering event
+  listeners.
 
 ## Depending on NilClassic-API
 
 NilClassic can be used by depending on it in your gradle script:
+
 ```groovy
 repositories {
     maven {
