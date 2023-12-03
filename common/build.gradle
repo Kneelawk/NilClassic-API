@@ -24,7 +24,7 @@ group = 'com.kneelawk.nilclassic-api'
 archivesBaseName = 'NilClassic-API-Common'
 version = modVersion
 
-project.libsDirectory.set(rootProject.layout.buildDirectory.dir("libs"))
+// project.libsDirectory.set(rootProject.layout.buildDirectory.dir("libs"))
 
 repositories {
     maven {
