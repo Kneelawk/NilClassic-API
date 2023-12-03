@@ -14,6 +14,10 @@ public class MinecraftServerTrans extends MiniTransformer {
         public static void onMinecraftServerCreated(MinecraftServer server) {
             ServerLifecycleEvents.SERVER_CREATED.invoker().onServerCreated(server);
         }
+
+        public static void onMinecraftServerStarting(MinecraftServer server) {
+            ServerLifecycleEvents.SERVER_STARTING.invoker().onServerStarting(server);
+        }
     }
 
     @Patch.Method("<clinit>()V")
@@ -29,6 +33,17 @@ public class MinecraftServerTrans extends MiniTransformer {
             DUP(),
             INVOKESTATIC("com/kneelawk/nilclassicapi/impl/server/premain/MinecraftServerTrans$Hooks",
                 "onMinecraftServerCreated", "(Lcom/mojang/minecraft/server/MinecraftServer;)V")
+        );
+    }
+
+    @Patch.Method("run()V")
+    public void patchRun(PatchContext ctx) {
+        // CLIENT_STARTING
+        ctx.jumpToStart();
+        ctx.add(
+            ALOAD(0),
+            INVOKESTATIC("Lcom/kneelawk/nilclassicapi/impl/server/premain/MinecraftServerTrans$Hooks",
+                "onMinecraftServerStarting", "(Lcom/mojang/minecraft/server/MinecraftServer;)V")
         );
     }
 }

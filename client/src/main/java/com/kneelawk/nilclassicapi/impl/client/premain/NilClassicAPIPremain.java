@@ -11,5 +11,6 @@ public class NilClassicAPIPremain implements Runnable {
         NilClassicAPILog.log.info("NilClassicAPI premain!");
 
         ClassTransformer.register(new MinecraftAppletTrans());
+        ClassTransformer.register(new MinecraftTrans());
     }
 }

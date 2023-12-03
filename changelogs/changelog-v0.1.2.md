@@ -1,0 +1,3 @@
+Changes:
+
+* Added `CLIENT_STARTING`, `CLIENT_STARTED`, and `SERVER_STARTING` events.
